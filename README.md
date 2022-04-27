@@ -6,16 +6,16 @@ The main program for DaL, which reads data from csv files, train and evaluate Da
 
 - **utils**
 
-└─ **general.py**:
+    └─ **general.py**:
     Contains utility functions to build DNN.
     
-└─ **hyperparameter_tuning.py**:
+    └─ **hyperparameter_tuning.py**:
     Contains function that efficiently tunes hyperparameters of DNN.
     
-└─ **mlp_plain_model.py**:
+    └─ **mlp_plain_model.py**:
     Contains functions to construct and train plain DNN.
     
-└─ **mlp_sparse_model.py**:
+    └─ **mlp_sparse_model.py**:
     Contains functions to construct and build DNN with L1 regularization
 
 - Data

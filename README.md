@@ -33,7 +33,8 @@ Supplementary tables for the paper.
 
 # Usage
 ## To run DaL with default settings:
-- Command line: Move to the folder with the codes, and run
+- **Command line**: Move to the folder with the codes, and run
+
         python Encoding.py
 Python IDE (e.g. Pycharm): Open the Encoding.py file on the IDE, and click 'Run'.
 To switch between subject systems

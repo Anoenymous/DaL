@@ -29,13 +29,17 @@ Supplementary tables for the paper.
 # State-of-the-art Models
 Below are the repositories of the SOTA performance prediction models, which are evaluated and compared with DaL in the paper:
 
-[DeepPerf](https://github.com/DeepPerf/DeepPerf)
+- [DeepPerf](https://github.com/DeepPerf/DeepPerf)
+A deep neural network performance model with L1 regularization and efficient hyperparameter tuning.
 
-[DECART](https://github.com/DeepPerf/DeepPerf)
+- [DECART](https://github.com/jmguo/DECART)
+CART with data-efficient sampling method.
 
-[SPLConqueror]
+- [SPLConqueror](https://github.com/se-sic/SPLConqueror)
+Linear regression with optimal binary and numerical sampling method and stepwise feature seleaction.
 
-[Perf-AL]
+- [Perf-AL](https://github.com/GANPerf/GANPerf)
+Novel GAN based performance model with a generator to predict performance and a discriminator to distinguish the actual and predicted labels.
 
 # Prerequisites and Installation
 

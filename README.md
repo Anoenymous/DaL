@@ -32,15 +32,18 @@ Supplementary tables for the paper.
 3. Run *DaL_main.py* and install all missing packages according to runtime messages.
 
 # Usage
-## To run DaL with default settings:
-- **Command line**: Move to the folder with the codes, and run
+## To run DaL:
+- **Command line**: cd to the folder with the codes, and run
 
-        python Encoding.py
-Python IDE (e.g. Pycharm): Open the Encoding.py file on the IDE, and click 'Run'.
-To switch between subject systems
-Comment and Uncomment the codes following the comments in Encoding.py.
-To change experiment settings:
-Alter the codes following the comments in Encoding.py.
+        python DaL_main.py
+        
+- **Python IDE (e.g. Pycharm)**: Open the Encoding.py file on the IDE, and click 'Run'.
+
+## To switch between subject systems
+Comment and Uncomment the lines 33-40 following the comments in *DaL_main.py*.
+
+## To change experiment settings:
+Alter the codes between lines 20-30 following the comments in *DaL_main.py*.
 
 # State-of-the-art Models
 Below are the repositories of the SOTA performance prediction models, which are evaluated and compared with DaL in the paper:

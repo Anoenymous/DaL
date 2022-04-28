@@ -36,7 +36,6 @@ Supplementary tables for the paper.
 
 
 # Run DaL
-The program is fully automated and simple to use.
 
 - **Command line**: cd to the folder with the codes, and run
 

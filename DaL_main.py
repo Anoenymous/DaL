@@ -1,15 +1,11 @@
-# -*- coding: utf-8 -*-
 import numpy as np
 import pandas as pd
 import random
 from numpy import genfromtxt
 import time
 from sklearn import tree
-from MTL_sparse_model import MTLSparseModel
-from MTL_plain_model import MTLPlainModel
-from mlp_sparse_model import MLPSparseModel
-from mlp_plain_model import MLPPlainModel
 from sklearn.feature_selection import mutual_info_regression
+from mlp_sparse_model import MLPSparseModel
 import tensorflow as tf
 from sklearn.cluster import KMeans
 from sklearn.ensemble import RandomForestClassifier
@@ -21,15 +17,15 @@ from utils.hyperparameter_tuning import nn_l1_val, hyperparameter_tuning
 
 if __name__ == "__main__":
     # set the parameters
-    test_mode = False ### to tune the hyper-pearameters, set to False
+    test_mode = True ### to tune the hyper-pearameters, set to False
     save_file = False ### to save the results, set to True
-    enable_baseline_models = True ### to compare DaL framework with other local models, set to True
+    enable_baseline_models = False ### to compare DaL with other ML models (RQ2), set to True
+    enable_deepperf = False ### to compare DaL with Deepperf (RQ1), set to True
     seed = 3 # the base random seed, for replicating the results
-    min_samples = 2 # minimum samples in each subset
-    depths = [1,2]  ### to run experiments comparing different depths, add depths here, starting from 1
+    depths = [1]  ### to run experiments comparing different depths, add depths here, starting from 1
     total_experiments = 30 # the number of repeated runs
-    # N_experiments = [0, 0, 0, 30]
-    N_experiments = [1, 0, 0, 0, 0] ### to control the number of experiment, each element corresponds to a sample size
+    N_experiments = [30, 30, 30, 30, 30] ### to control the number of experiment, each element corresponds to a sample size
+    min_samples = 2  # minimum samples required in each division
     total_tasks = 1  # number of performance metrics in the csv file, starting from 1
     task_index = 1  # the index of the performance metric to learn, starting from 1
 
@@ -45,20 +41,13 @@ if __name__ == "__main__":
     ### ---change the lines above to switch subject system--- ###
 
     dir_data = 'Data/{}.csv'.format(subject_system) ### change this line to locate the dataset files
-
     print('Dataset: ' + subject_system)
+
     whole_data = genfromtxt(dir_data, delimiter=',', skip_header=1) # read the csv file into array
     (N, n) = whole_data.shape # get the number of rows and columns
     print('Total sample size: ', N)
     N_features = n - total_tasks # calculate the number of features
     print('N_features: ', N_features)
-    binary_system = True
-
-    if np.max(whole_data[:, 0:N_features]) > 1:
-        binary_system = False
-        print('Numerial system')
-    else:
-        print('Bianry system')
 
     ### ---change the lines below to specify the training sample sizes--- ###
     sample_sizes = []
@@ -86,7 +75,7 @@ if __name__ == "__main__":
     for i_train, N_train in enumerate(sample_sizes):
         # specify the number of testing samples
         N_test = 0
-        if (N_train > 2):
+        if (N > N_train > 2):
             N_test = N - N_train ### the default testing size is all the samples except the training ones
         else:
             N_test = 1
@@ -98,26 +87,18 @@ if __name__ == "__main__":
         # save the results when needed
         if save_file and N_experiments[i_train] != 0:
             with open(saving_file_name, 'w') as f:
-                f.write('N_train={} N_test={}'.format(N_train, N_test)) # the first line is the numbers of data
+                f.write('N_train={} N_test={}'.format(N_train, N_test)) # the first line is the sizes
 
         # for the specified number of repeated runs
         for ne in range(total_experiments-N_experiments[i_train], total_experiments):
             print('\nRun {}: '.format(ne + 1))
             print('N_train: ', N_train)
             print('N_test: ', N_test)
-            # write the number of the run
+
             if save_file:
-                with open(saving_file_name, 'a') as f:  # save the results
+                with open(saving_file_name, 'a') as f:  # write the number of the run
                     f.write('\nRun {}'.format(ne + 1))
 
-            # initialize variables
-            results_deepperf = []
-            results_RF = []
-            results_DT = []
-            time_deepperf = []
-            time_submodeling = []
-            time_RF = []
-            time_DT = []
             # set the seed of randomness in order to replicate the results
             random.seed(ne*seed) # the seed in each run is different
 
@@ -140,10 +121,10 @@ if __name__ == "__main__":
 
             # randomly generate the training samples
             non_zero_indexes = random.sample(list(non_zero_indexes), N_train)
-            print('training samples: {}'.format(non_zero_indexes))
+            print('training sample indexes: {}'.format(non_zero_indexes))
             # print('testing samples: {}'.format(testing_index))
 
-            # compute the weights of each feature using Mutual Information
+            # compute the weights of each feature using Mutual Information, for eliminating insignificant features
             weights = []
             feature_weights = mutual_info_regression(whole_data[non_zero_indexes, 0:N_features],
                                                      whole_data[non_zero_indexes, n - task_index], random_state=0)
@@ -153,14 +134,13 @@ if __name__ == "__main__":
                 # print('Feature {} weight: {}'.format(i, weight))
                 weights.append(weight)
 
-            # for each depths (in experiments to analyze the sensitivity to depths)
+            # for each depths (to analyze the sensitivity of DaL to depth (RQ3))
             for max_depth in depths:
-                print('\n---DNN_DAL depth {}---'.format(max_depth))
+                print('\n---DNN_DaL depth {}---'.format(max_depth))
                 # initialize variables
                 start = time.time() # to measure the training time
                 max_X = []
                 max_Y = []
-                layers = []
                 config = []
                 lr_opt = []
                 models = []
@@ -175,8 +155,8 @@ if __name__ == "__main__":
                 Y_test = []
                 cluster_indexes_all = []
 
-                # generate clustering labels based on the braching conditions of DT
-                print('Clustering...')
+                # generate clustering labels based on the dividing conditions of DT
+                print('Dividing...')
                 # get the training X and Y for clustering
                 Y = whole_data[non_zero_indexes, n - task_index][:, np.newaxis]
                 X = whole_data[non_zero_indexes, 0:N_features]
@@ -219,6 +199,7 @@ if __name__ == "__main__":
 
                 # run the defined recursive function above
                 recurse(0, 1, non_zero_indexes)
+
                 k = len(cluster_indexes_all) # the number of divided subsets
                 # if there is only one cluster, DAL can not be used
                 if k <= 1:
@@ -243,9 +224,6 @@ if __name__ == "__main__":
                     if i > 0: # the samples and labels for each cluster
                         total_index = total_index + cluster_indexes[i]
                         clusters = np.hstack((clusters, np.ones(int(len(cluster_indexes[i])))*i))
-                # print('Total indexes: ', total_index)
-                # print('Total labels: ', clusters)
-                # print('Total training size: ', len(total_index))
 
                 # get max_X and max_Y for scaling
                 max_X = np.amax(whole_data[total_index, 0:N_features], axis=0) # scale X to 0-1
@@ -293,17 +271,15 @@ if __name__ == "__main__":
                     smo = SMOTE(random_state=1, k_neighbors=3)
                     X_smo, y_smo = smo.fit_resample(X_smo, y_smo)
 
-                # build the random forest classifier to classify testing samples
+                # build a random forest classifier to classify testing samples
                 forest = RandomForestClassifier(random_state=0)
-                # tune the hyperparameters
-                param = {"criterion": ["entropy"],
-                         # "criterion": ["gini", "entropy"],
-                         "min_samples_split": [2, 10, 20],
-                         "max_depth": [None, 2, 5, 10],
-                         "min_samples_leaf": [1, 5, 10],
-                         "max_leaf_nodes": [None, 5, 10, 20],
-                         }
+                # tune the hyperparameters if not in test mode
                 if not test_mode:
+                    param = {"min_samples_split": [2, 10, 20],
+                             "max_depth": [None, 2, 5, 10],
+                             "min_samples_leaf": [1, 5, 10],
+                             "max_leaf_nodes": [None, 5, 10, 20],
+                             }
                     print('Hyperparameter Tuning...')
                     gridS = GridSearchCV(forest, param)
                     gridS.fit(X_smo, y_smo)
@@ -316,7 +292,7 @@ if __name__ == "__main__":
                 for j in range(N_features):
                     X[:, j] = X[:, j] * weights[j]  # assign the weight for each feature
                 for temp_X in X:
-                    temp_cluster = forest.predict(temp_X.reshape(1, -1)) # predict the cluster using RF
+                    temp_cluster = forest.predict(temp_X.reshape(1, -1)) # predict the dedicated local DNN using RF
                     testing_clusters.append(int(temp_cluster))
                 # print('Testing size: ', len(testing_clusters))
                 # print('Testing sample clusters: {}'.format((testing_clusters)))
@@ -325,9 +301,9 @@ if __name__ == "__main__":
 
 
 
-                ### Train DNN_DAL
-                # default hyperparameters, just for testing
-                if test_mode == True:
+                ### Train DNN_DaL
+                print('Training...')
+                if test_mode == True: # default hyperparameters, just for testing
                     for i in range(0, k):
                         # define the configuration for constructing the NN
                         temp_lr_opt = 0.123
@@ -341,7 +317,6 @@ if __name__ == "__main__":
                         temp_config['verbose'] = 0
                         config.append(temp_config)
                         lr_opt.append(temp_lr_opt)
-                        # layers.append(n_layer_opt)
 
                 ## tune DNN for each cluster (division) with multi-thread
                 elif test_mode == False:  # only tune the hyperparameters when not test_mode
@@ -366,14 +341,15 @@ if __name__ == "__main__":
                             lr_opt.append(temp_lr_opt)
 
                 for i in range(k):
-                    # train a DNN model
-                    model = MTLSparseModel(config[i])
+                    # train a local DNN model using the optimal hyperparameters
+                    model = MLPSparseModel(config[i])
                     model.build_train()
                     model.train(X_train[i], Y_train[i], lr_opt[i])
-                    # save the trained models for each cluster
-                    models.append(model)
+                    models.append(model) # save the trained models for each cluster
+
 
                 # compute the MRE (MAPE) using the testing samples
+                print('Testing...')
                 rel_errors = []
                 # rel_error3 = []
                 count = 0 # count the correctly classified clusters
@@ -400,20 +376,20 @@ if __name__ == "__main__":
 
                 # End measuring time
                 end = time.time()
-                time_submodeling.append((end - start) / 60)
-                print('DNN_DaL total time cost (minutes): {:.2f}'.format(time_submodeling[-1]))
+                time_submodeling = ((end - start) / 60)
+                print('DNN_DaL total time cost (minutes): {:.2f}'.format(time_submodeling))
 
                 # save the MRE and time
                 if save_file:
                     with open(saving_file_name, 'a') as f:  # save the results
                         # f.write('\nRun {}'.format(ne+1))
                         f.write('\ndepth{} Deepperf_submodeling RE: {}'.format(max_depth, np.mean(rel_errors)))
-                        f.write('\ndepth{} Deepperf_submodeling_time (minutes): {}'.format(max_depth, time_submodeling[-1]))
+                        f.write('\ndepth{} Deepperf_submodeling_time (minutes): {}'.format(max_depth, time_submodeling))
 
 
 
 
-                ### Train different local models with DaL framework
+                ### Train different ML models with DaL framework
                 if enable_baseline_models:
                     for regression_mod in ['RF', 'KNN', 'SVR', 'DT', 'LR', 'KR']:
                         # check if there's enough data
@@ -480,88 +456,86 @@ if __name__ == "__main__":
 
 
             ### training DeepPerf
-            print('\n---Training DeepPerf---')
-            # initialize time
-            start = time.time()
+            if enable_deepperf:
+                print('\n---Training DeepPerf---')
+                # initialize time
+                start = time.time()
 
-            # get max X and Y for scaling
-            max_X = np.amax(whole_data[total_index, 0:N_features], axis=0)
-            if 0 in max_X:
-                max_X[max_X == 0] = 1
-            max_Y = np.max(whole_data[total_index, n - task_index]) / 100
-            if max_Y == 0:
-                max_Y = 1
+                # get max X and Y for scaling
+                max_X = np.amax(whole_data[total_index, 0:N_features], axis=0)
+                if 0 in max_X:
+                    max_X[max_X == 0] = 1
+                max_Y = np.max(whole_data[total_index, n - task_index]) / 100
+                if max_Y == 0:
+                    max_Y = 1
 
-            # get the training and testing data
-            X_train_deepperf = whole_data[total_index, 0:N_features]
-            Y_train_deepperf = whole_data[total_index, n - task_index][:, np.newaxis]
-            X_test_deepperf = whole_data[testing_index, 0:N_features]
-            Y_test_deepperf = whole_data[testing_index, n - task_index][:, np.newaxis]
-            print('Deepperf training size: ', len(X_train_deepperf))
-            print('Deepperf testing size: ', len(X_test_deepperf))
+                # get the training and testing data
+                X_train_deepperf = whole_data[total_index, 0:N_features]
+                Y_train_deepperf = whole_data[total_index, n - task_index][:, np.newaxis]
+                X_test_deepperf = whole_data[testing_index, 0:N_features]
+                Y_test_deepperf = whole_data[testing_index, n - task_index][:, np.newaxis]
+                print('Deepperf training size: ', len(X_train_deepperf))
+                print('Deepperf testing size: ', len(X_test_deepperf))
 
-            # Scale X and Y
-            X_train_deepperf = np.divide(X_train_deepperf, max_X)
-            Y_train_deepperf = np.divide(Y_train_deepperf, max_Y)
-            X_test_deepperf = np.divide(X_test_deepperf, max_X)
+                # Scale X and Y
+                X_train_deepperf = np.divide(X_train_deepperf, max_X)
+                Y_train_deepperf = np.divide(Y_train_deepperf, max_Y)
+                X_test_deepperf = np.divide(X_test_deepperf, max_X)
 
-            # Split train data into 2 parts (67-33)
-            N_cross = int(np.ceil(len(X_train_deepperf) * 2 / 3))
-            X_train1 = X_train_deepperf[0:N_cross, :]
-            Y_train1 = Y_train_deepperf[0:N_cross]
-            X_train2 = X_train_deepperf[N_cross:len(X_train_deepperf), :]
-            Y_train2 = Y_train_deepperf[N_cross:len(X_train_deepperf)]
+                # Split train data into 2 parts (67-33)
+                N_cross = int(np.ceil(len(X_train_deepperf) * 2 / 3))
+                X_train1 = X_train_deepperf[0:N_cross, :]
+                Y_train1 = Y_train_deepperf[0:N_cross]
+                X_train2 = X_train_deepperf[N_cross:len(X_train_deepperf), :]
+                Y_train2 = Y_train_deepperf[N_cross:len(X_train_deepperf)]
 
-            # default hyperparameters, just for testing
-            if test_mode == True:
-                lr_opt = 0.123
-                n_layer_opt = 3
-                lambda_f = 0.123
-                config = dict()
-                config['num_neuron'] = 128
-                config['num_input'] = N_features
-                config['num_layer'] = n_layer_opt
-                config['lambda'] = lambda_f
-                config['verbose'] = 0
-            # if not test_mode, tune the hyperparameters
-            else:
-                n_layer_opt, lambda_f, lr_opt = hyperparameter_tuning([N_features, X_train1, Y_train1, X_train2, Y_train2])
+                # default hyperparameters, just for testing
+                if test_mode == True:
+                    lr_opt = 0.123
+                    n_layer_opt = 3
+                    lambda_f = 0.123
+                    config = dict()
+                    config['num_neuron'] = 128
+                    config['num_input'] = N_features
+                    config['num_layer'] = n_layer_opt
+                    config['lambda'] = lambda_f
+                    config['verbose'] = 0
+                # if not test_mode, tune the hyperparameters
+                else:
+                    n_layer_opt, lambda_f, lr_opt = hyperparameter_tuning([N_features, X_train1, Y_train1, X_train2, Y_train2])
 
-                # save the hyperparameters
-                config = dict()
-                config['num_neuron'] = 128
-                config['num_input'] = N_features
-                config['num_layer'] = n_layer_opt
-                config['lambda'] = lambda_f
-                config['verbose'] = 0
+                    # save the hyperparameters
+                    config = dict()
+                    config['num_neuron'] = 128
+                    config['num_input'] = N_features
+                    config['num_layer'] = n_layer_opt
+                    config['lambda'] = lambda_f
+                    config['verbose'] = 0
 
-            # train the DeepPerf model
-            deepperf_model = MTLSparseModel(config)
-            deepperf_model.build_train()
-            deepperf_model.train(X_train_deepperf, Y_train_deepperf, lr_opt)
+                # train the DeepPerf model
+                deepperf_model = MTLSparseModel(config)
+                deepperf_model.build_train()
+                deepperf_model.train(X_train_deepperf, Y_train_deepperf, lr_opt)
 
-            # compute MRE
-            rel_error = []
-            print('Testing...')
-            Y_pred_test = deepperf_model.predict(X_test_deepperf)
-            Y1_pred_test = max_Y * Y_pred_test[:, 0:1]
-            rel_error = np.mean(
-                np.abs(np.divide(Y_test_deepperf.ravel() - Y1_pred_test.ravel(), Y_test_deepperf.ravel()))) * 100
-            results_deepperf.append(rel_error)
-            print('> Deepperf MRE: {}'.format(rel_error))
+                # compute MRE
+                rel_error = []
+                print('Testing...')
+                Y_pred_test = deepperf_model.predict(X_test_deepperf)
+                Y1_pred_test = max_Y * Y_pred_test[:, 0:1]
+                rel_error = np.mean(
+                    np.abs(np.divide(Y_test_deepperf.ravel() - Y1_pred_test.ravel(), Y_test_deepperf.ravel()))) * 100
+                print('> Deepperf MRE: {}'.format(rel_error))
 
-            # End measuring time
-            end = time.time()
-            time_deepperf.append((end - start) / 60)
-            if len(time_deepperf) > 1:
-                print('Deepperf Time cost (minutes): {:.2f}'.format(time_deepperf[-1]))
-            if len(time_submodeling) > 1:
-                print('Submodeling Time cost (minutes): {:.2f}'.format(time_submodeling[-1]))
-            # save the results
-            if save_file:
-                with open(saving_file_name, 'a') as f:  # save the results
-                    f.write('\nDeepperf RE: {}'.format(rel_error))
-                    f.write('\nDeepperf_time (minutes): {}'.format(time_deepperf[-1]))
+                # End measuring time
+                end = time.time()
+                time_deepperf = ((end - start) / 60)
+                print('Deepperf Time cost (minutes): {:.2f}'.format(time_deepperf))
+
+                # save the results
+                if save_file:
+                    with open(saving_file_name, 'a') as f:  # save the results
+                        f.write('\nDeepperf RE: {}'.format(rel_error))
+                        f.write('\nDeepperf_time (minutes): {}'.format(time_deepperf))
 
 
 
@@ -613,19 +587,15 @@ if __name__ == "__main__":
                     rel_error = np.mean(
                         np.abs(
                             np.divide(Y_test_deepperf.ravel() - Y1_pred_test.ravel(), Y_test_deepperf.ravel()))) * 100
-                    results_deepperf.append(rel_error)
                     print('> {} MRE: {}'.format(regression_mod, rel_error))
 
                     # End measuring time
                     end = time.time()
-                    time_deepperf.append((end - start) / 60)
-                    if len(time_deepperf) > 1:
-                        print('{} Time cost (minutes): {:.2f}'.format(regression_mod, time_deepperf[-1]))
-                    if len(time_submodeling) > 1:
-                        print('{}_submodeling Time cost (minutes): {:.2f}'.format(regression_mod, time_submodeling[-1]))
+                    training_time = ((end - start) / 60)
+                    print('{} Time cost (minutes): {:.2f}'.format(regression_mod, training_time))
 
                     # save the results
                     if save_file:
                         with open(saving_file_name, 'a') as f:  # save the results
                             f.write('\n{} RE: {}'.format(regression_mod, rel_error))
-                            f.write('\n{}_time (minutes): {}'.format(regression_mod, time_deepperf[-1]))
+                            f.write('\n{}_time (minutes): {}'.format(regression_mod, training_time))

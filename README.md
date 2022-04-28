@@ -51,25 +51,39 @@ E.g., to run DaL with Apache, uncomment line 33 'subject_system = 'Apache_AllNum
 
 
 ## To change experiment settings
-Alter the codes between lines 20-30 following the comments in *DaL_main.py*.
+Alter the codes between lines 20-71 following the comments in *DaL_main.py*.
 
-E.g.:
-- To save the experiment results, set 'save_file = True' at line 21.
-- To change the number of experiments, change 'N_experiments' at line 27, where each element corresponds a sample size. 
+### To save the experiment results
+set 'save_file = True' at line 21.
+
+
+### To change the number of experiments
+Change 'N_experiments' at line 27, where each element corresponds a sample size. 
+
 For example, to simply run the first sample size with 30 repeated runs, set 'N_experiments = [30, 0, 0, 0, 0]'.
 
+### To change the sample sizes of a particular system
+Edit lines 55-71.
 
-## To compare DaL with DeepPerf
-1. Set line 20 with 'test_mode = False'
-
-2. Set line 23 with 'enable_deepperf = True'
+For example, to run Apache with sample sizes 10, 20, 30, 40 and 50: set line 55 with 'sample_sizes = [10, 20, 30, 40, 50]'.
 
 
-## To compare DaL with other ML models (RF, DT, LR, SVR, KRR, kNN) and DaL framework with these models (DaL_RF, DaL_DT, DaL_LR, DaL_SVR, DaL_KRR, DaL_kNN)
-1. Set line 20 with 'test_mode = False'
+### To compare DaL with DeepPerf
+1. Set line 20 with 'test_mode = False'.
 
-2. Set line 22 with 'enable_baseline_models = True'
+2. Set line 23 with 'enable_deepperf = True'.
 
+
+### To compare DaL with other ML models (RF, DT, LR, SVR, KRR, kNN) and DaL framework with these models (DaL_RF, DaL_DT, DaL_LR, DaL_SVR, DaL_KRR, DaL_kNN)
+1. Set line 20 with 'test_mode = False'.
+
+2. Set line 22 with 'enable_baseline_models = True'.
+
+
+### To run DaL with different depth d
+- Run DaL with d=2: set line 25 with 'depths = [2]'.
+
+- Run DaL with d=3 and d=4: set line 25 with 'depths = [3, 4]'.
 
 
 # State-of-the-art Models

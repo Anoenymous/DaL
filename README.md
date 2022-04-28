@@ -26,6 +26,21 @@ Performance datasets of 8 subject systems as specified in the paper.
 - **Tables**:
 Supplementary tables for the paper.
 
+# Prerequisites and Installation
+1. Download all the files into the same folder.
+2. The codes are tested with *Python 3.6 - 3.7* and *Tensorflow 1.x*, other versions might cause errors.
+3. Run *DaL_main.py* and install all missing packages according to runtime messages.
+
+# Usage
+## To run DaL with default settings:
+- Command line: Move to the folder with the codes, and run
+        python Encoding.py
+Python IDE (e.g. Pycharm): Open the Encoding.py file on the IDE, and click 'Run'.
+To switch between subject systems
+Comment and Uncomment the codes following the comments in Encoding.py.
+To change experiment settings:
+Alter the codes following the comments in Encoding.py.
+
 # State-of-the-art Models
 Below are the repositories of the SOTA performance prediction models, which are evaluated and compared with DaL in the paper:
 
@@ -44,10 +59,3 @@ Below are the repositories of the SOTA performance prediction models, which are 
 - [Perf-AL](https://github.com/GANPerf/GANPerf)
 
     Novel GAN based performance model with a generator to predict performance and a discriminator to distinguish the actual and predicted labels.
-
-# Prerequisites and Installation
-1. Download all the files into the same folder.
-2. The codes are tested with *Python 3.6 - 3.7* and *Tensorflow 1.x*, other versions might cause errors.
-3. Run Encoding.py and install all missing packages according to the runtime messages.
-
-# Usage

@@ -23,12 +23,17 @@ Contains functions to construct and build DNN with L1 regularization. This is al
 - **Data**:
 Performance datasets of 8 subject systems as specified in the paper.
 
+- **Tables**:
+
 # State-of-the-art Models
 Below are the repositories of the SOTA performance prediction models, which are evaluated and compared with DaL in the paper:
 
 [DeepPerf](https://github.com/DeepPerf/DeepPerf)
+
 [DECART](https://github.com/DeepPerf/DeepPerf)
+
 [SPLConqueror]
+
 [Perf-AL]
 
 # Prerequisites and Installation

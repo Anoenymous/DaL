@@ -90,7 +90,9 @@ To run more complicated experiments, alter the codes between lines 20-71 followi
 
 
 # State-of-the-art Performance Prediction Models
-Below are the repositories of the SOTA performance prediction models, which are evaluated and compared with DaL in the paper:
+Below are the repositories of the SOTA performance prediction models, which are evaluated and compared with DaL in the paper. 
+
+Note that 'DaL_main.py' only compares DeepPerf because it is formulated in the most similar way to DaL, while the others are developed under different programming languages or have differnt ways of usage. Therefore, to compare DaL other SOTA models, please refer to their original pages (You might have to modify or replicate their codes to ensure the compared models share the same set of training and testing samples).
 
 - [DeepPerf](https://github.com/DeepPerf/DeepPerf)
 

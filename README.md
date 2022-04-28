@@ -32,18 +32,30 @@ Supplementary tables for the paper.
 3. Run *DaL_main.py* and install all missing packages according to runtime messages.
 
 # Usage
-## To run DaL:
+### To run DaL
 - **Command line**: cd to the folder with the codes, and run
 
         python DaL_main.py
         
 - **Python IDE (e.g. Pycharm)**: Open the Encoding.py file on the IDE, and click 'Run'.
 
-## To switch between subject systems
+### To switch between subject systems
 Comment and Uncomment the lines 33-40 following the comments in *DaL_main.py*.
 
-## To change experiment settings:
+### To change experiment settings
 Alter the codes between lines 20-30 following the comments in *DaL_main.py*.
+
+E.g.
+
+To save the experiment results, set 'save_file = True' line 21.
+To change the number of experiments, change 'N_experiments' at line 27, where each element corresponds to N_experiment of a sample size. For example, to simply run the first sample size with 30 repeated runs, set 'N_experiments = [30, 0, 0, 0, 0]'.
+
+
+### To compare DaL with DeepPerf
+1. Set line 20 with 'test_mode = False'
+2. Set line 21 with 'save_file = True'
+3. 
+
 
 # State-of-the-art Models
 Below are the repositories of the SOTA performance prediction models, which are evaluated and compared with DaL in the paper:

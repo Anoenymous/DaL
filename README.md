@@ -109,6 +109,7 @@ Below are the repositories of the SOTA performance prediction models, which are 
     Novel GAN based performance model with a generator to predict performance and a discriminator to distinguish the actual and predicted labels.
     
 
-Note that 'DaL_main.py' only compares DeepPerf because it is formulated in the most similar way to DaL, while the others are developed under different programming languages or have differnt ways of usage. 
+
+Note that *DaL_main.py* only contains DeepPerf because it is formulated in the most similar way to DaL, while the others are developed under different programming languages or have differnt ways of usage. 
 
 Therefore, to compare DaL other SOTA models, please refer to their original pages (You might have to modify or replicate their codes to ensure the compared models share the same set of training and testing samples).

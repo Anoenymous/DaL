@@ -46,7 +46,9 @@ Supplementary tables for the paper.
 
 
 # Change Experiment Settings
-Alter the codes between lines 20-71 following the comments in *DaL_main.py*.
+The main program is fully automated with a default experiment setting, which is an example of evaluating DaL.
+
+To run more complicated experiments, alter the codes between lines 20-71 following the comments in *DaL_main.py*.
 
 #### To switch between subject systems
     Comment and Uncomment the lines 33-40 following the comments in DaL_main.py.

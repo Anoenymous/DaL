@@ -3,7 +3,7 @@ This repository contains the key codes and full data used in the paper **_'Predi
 # Documents
 
 - **DaL_main.py**: 
-The **main program** for using DaL, which reads data from csv files, trains and evaluates DaL as well as the other local models as specified in the paper.
+The <u>main program</u> for using DaL, which reads data from csv files, trains and evaluates DaL as well as the other local models as specified in the paper.
 
 - **mlp_plain_model.py**:
 Contains functions to construct and train plain DNN. This is also used by [DeepPerf](https://github.com/DeepPerf/DeepPerf).

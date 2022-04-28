@@ -14,7 +14,7 @@ Contains functions to construct and build DNN with L1 regularization. This is al
 - **utils**
 
     └─ **general.py**:
-    Contains utility functions to build DNN.
+    Contains utility functions to build DNN and other ML models.
     
     └─ **hyperparameter_tuning.py**:
     Contains function that efficiently tunes hyperparameters of DNN.

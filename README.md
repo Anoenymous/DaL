@@ -4,28 +4,28 @@ This repository contains the key codes, full data used, and the suppplementary t
 # Documents
 
 - **DaL_main.py**: 
-The *main program* for using DaL, which automatically reads data from csv files, trains and evaluates DaL as well as the other local models as specified in the paper.
+the *main program* for using DaL, which automatically reads data from csv files, trains and evaluates DaL as well as the other local models as specified in the paper.
 
 - **mlp_plain_model.py**:
-Contains functions to construct and train plain DNN. This is also used by [DeepPerf](https://github.com/DeepPerf/DeepPerf).
+contains functions to construct and train plain DNN. This is also used by [DeepPerf](https://github.com/DeepPerf/DeepPerf).
     
 - **mlp_sparse_model.py**:
-Contains functions to construct and build DNN with L1 regularization. This is also used by [DeepPerf](https://github.com/DeepPerf/DeepPerf).
+contains functions to construct and build DNN with L1 regularization. This is also used by [DeepPerf](https://github.com/DeepPerf/DeepPerf).
 
 - **utils**
 
     └─ **general.py**:
-    Contains utility functions to build DNN and other ML models.
+    contains utility functions to build DNN and other ML models.
     
     └─ **hyperparameter_tuning.py**:
-    Contains function that efficiently tunes hyperparameters of DNN.
+    contains function that efficiently tunes hyperparameters of DNN.
     
 
 - **Data**:
-Performance datasets of 8 subject systems as specified in the paper.
+performance datasets of 8 subject systems as specified in the paper.
 
 - **Tables**:
-Supplementary tables for the paper.
+supplementary tables for the paper.
 
 # Prerequisites and Installation
 1. Download all the files into the same folder.

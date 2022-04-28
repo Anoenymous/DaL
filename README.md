@@ -53,7 +53,7 @@ Alter the codes between lines 20-71 following the comments in *DaL_main.py*.
 
 
 #### To save the experiment results
-    set 'save_file = True' at line 21.
+    Set 'save_file = True' at line 21.
 
 
 #### To change the number of experiments
@@ -85,7 +85,7 @@ Alter the codes between lines 20-71 following the comments in *DaL_main.py*.
     - Run DaL with d=3 and d=4: set line 25 with 'depths = [3, 4]'.
 
 
-# State-of-the-art Models
+# State-of-the-art Performance Prediction Models
 Below are the repositories of the SOTA performance prediction models, which are evaluated and compared with DaL in the paper:
 
 - [DeepPerf](https://github.com/DeepPerf/DeepPerf)

@@ -34,7 +34,7 @@ Supplementary tables for the paper.
 3. Run *DaL_main.py* and install all missing packages according to runtime messages.
 
 # Usage
-## To run DaL
+## Run DaL
 - **Command line**: cd to the folder with the codes, and run
 
         python DaL_main.py
@@ -43,18 +43,17 @@ Supplementary tables for the paper.
 
 
 
-## To switch between subject systems
-Comment and Uncomment the lines 33-40 following the comments in *DaL_main.py*.
-
-E.g., to run DaL with Apache, uncomment line 33 'subject_system = 'Apache_AllNumeric'' and comment the other lines.
-
-
-
-## To change experiment settings
+## Change experiment settings
 Alter the codes between lines 20-71 following the comments in *DaL_main.py*.
 
-### To save the experiment results
-set 'save_file = True' at line 21.
+#### To switch between subject systems
+    Comment and Uncomment the lines 33-40 following the comments in *DaL_main.py*.
+
+    E.g., to run DaL with Apache, uncomment line 33 'subject_system = 'Apache_AllNumeric'' and comment the other lines.
+
+
+#### To save the experiment results
+    set 'save_file = True' at line 21.
 
 
 ### To change the number of experiments

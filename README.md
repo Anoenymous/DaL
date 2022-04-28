@@ -37,11 +37,11 @@ Supplementary tables for the paper.
 
 # Run DaL
 
-- **Command line**: cd to the folder with the codes, and run
+- **Command line**: cd to the folder with the codes, and simply run
 
         python DaL_main.py
         
-- **Python IDE (e.g. Pycharm)**: Open the *DaL_main.py* file on the IDE, and click 'Run'.
+- **Python IDE (e.g. Pycharm)**: Open the *DaL_main.py* file on the IDE, and simply click 'Run'.
 
 
 

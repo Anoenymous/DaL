@@ -44,7 +44,7 @@ Supplementary tables for the paper.
 
 
 
-# Change program settings
+# Change Experiment Settings
 Alter the codes between lines 20-71 following the comments in *DaL_main.py*.
 
 #### To switch between subject systems

@@ -36,8 +36,8 @@ if __name__ == "__main__":
     # subject_system = 'x264_AllNumeric'
     # subject_system = 'hsmgp_AllNumeric'
     # subject_system = 'hipacc_AllNumeric'
-    subject_system = 'VP8'
-    # subject_system = 'Irzip'
+    # subject_system = 'VP8'
+    subject_system = 'Lrzip'
     ### ---change the lines above to switch subject system--- ###
 
     dir_data = 'Data/{}.csv'.format(subject_system) ### change this line to locate the dataset files
@@ -65,7 +65,7 @@ if __name__ == "__main__":
         sample_sizes = [261, 528, 736, 1281,2631]
     elif subject_system == 'VP8':
         sample_sizes = [121, 273, 356, 467, 830]
-    elif subject_system == 'Irzip':
+    elif subject_system == 'Lrzip':
         sample_sizes = [127, 295, 386, 485, 907]
     else:
         sample_sizes = np.multiply(N_features, [1, 2, 3, 4, 5]) # in the default case, the sizes are [n, 2n, ... 5n], n = N_features
@@ -201,7 +201,7 @@ if __name__ == "__main__":
                 recurse(0, 1, non_zero_indexes)
 
                 k = len(cluster_indexes_all) # the number of divided subsets
-                # if there is only one cluster, DAL can not be used
+                # if there is only one cluster, DaL can not be used
                 if k <= 1:
                     print('Error: samples are less than the minimum number (min_samples={}), please add more samples'.format(min_samples))
                     continue # end this run
@@ -376,15 +376,15 @@ if __name__ == "__main__":
 
                 # End measuring time
                 end = time.time()
-                time_submodeling = ((end - start) / 60)
-                print('DNN_DaL total time cost (minutes): {:.2f}'.format(time_submodeling))
+                time_dal = ((end - start) / 60)
+                print('DNN_DaL total time cost (minutes): {:.2f}'.format(time_dal))
 
                 # save the MRE and time
                 if save_file:
                     with open(saving_file_name, 'a') as f:  # save the results
                         # f.write('\nRun {}'.format(ne+1))
-                        f.write('\ndepth{} Deepperf_submodeling RE: {}'.format(max_depth, np.mean(rel_errors)))
-                        f.write('\ndepth{} Deepperf_submodeling_time (minutes): {}'.format(max_depth, time_submodeling))
+                        f.write('\ndepth{} DNN_DaL RE: {}'.format(max_depth, np.mean(rel_errors)))
+                        f.write('\ndepth{} DNN_DaL_time (minutes): {}'.format(max_depth, time_dal))
 
 
 
@@ -403,7 +403,7 @@ if __name__ == "__main__":
                         start = time.time()
                         models = []
                         random.seed(ne * seed)
-                        print('\n---{}-DAL depth {}---'.format(regression_mod, max_depth))
+                        print('\n---{}-DaL depth {}---'.format(regression_mod, max_depth))
 
                         # train a local model for each cluster
                         for i in range(0, k):
@@ -436,7 +436,7 @@ if __name__ == "__main__":
                                 count += 1
 
                         rel_errors = np.mean(rel_errors) # average the REs to get the MRE
-                        print('> {}_DAL MRE: {}'.format(regression_mod, round(rel_errors, 2)))
+                        print('> {}_DaL MRE: {}'.format(regression_mod, round(rel_errors, 2)))
 
                         print('Best clustering rate: {}/{} = {}'.format(count, len(testing_clusters),
                                                                         count / len(testing_clusters)))
@@ -444,12 +444,12 @@ if __name__ == "__main__":
                         # End measuring time
                         end = time.time()
                         temp_time = (end - start) / 60
-                        print('{}_DAL Time cost (minutes): {:.2f}'.format(regression_mod, temp_time))
+                        print('{}_DaL Time cost (minutes): {:.2f}'.format(regression_mod, temp_time))
                         # save the results
                         if save_file:
                             with open(saving_file_name, 'a') as f:  # save the results
-                                f.write('\ndepth{} {}_submodeling RE: {}'.format(max_depth, regression_mod, np.mean(rel_errors)))
-                                f.write('\ndepth{} {}_submodeling_time (minutes): {}'.format(max_depth, regression_mod, temp_time))
+                                f.write('\ndepth{} {}_DaL RE: {}'.format(max_depth, regression_mod, np.mean(rel_errors)))
+                                f.write('\ndepth{} {}_DaL_time (minutes): {}'.format(max_depth, regression_mod, temp_time))
 
 
 

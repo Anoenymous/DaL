@@ -28,7 +28,9 @@ Supplementary tables for the paper.
 
 # Prerequisites and Installation
 1. Download all the files into the same folder.
+
 2. The codes are tested with *Python 3.6 - 3.7* and *Tensorflow 1.x*, other versions might cause errors.
+
 3. Run *DaL_main.py* and install all missing packages according to runtime messages.
 
 # Usage
@@ -40,15 +42,16 @@ Supplementary tables for the paper.
 - **Python IDE (e.g. Pycharm)**: Open the Encoding.py file on the IDE, and click 'Run'.
 
 ### To switch between subject systems
-Comment and Uncomment the lines 33-40 following the comments in *DaL_main.py*.
+    Comment and Uncomment the lines 33-40 following the comments in *DaL_main.py*.
+    
+    E.g., to run DaL with Apache, uncomment line 33 'subject_system = 'Apache_AllNumeric'' and comment the other lines.
 
 ### To change experiment settings
-Alter the codes between lines 20-30 following the comments in *DaL_main.py*.
+    Alter the codes between lines 20-30 following the comments in *DaL_main.py*.
 
-E.g.
-
-To save the experiment results, set 'save_file = True' line 21.
-To change the number of experiments, change 'N_experiments' at line 27, where each element corresponds to N_experiment of a sample size. For example, to simply run the first sample size with 30 repeated runs, set 'N_experiments = [30, 0, 0, 0, 0]'.
+    E.g.:
+    - To save the experiment results, set 'save_file = True' line 21.
+    - To change the number of experiments, change 'N_experiments' at line 27, where each element corresponds to N_experiment of a sample size. For example, to simply run the first sample size with 30 repeated runs, set 'N_experiments = [30, 0, 0, 0, 0]'.
 
 
 ### To compare DaL with DeepPerf

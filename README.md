@@ -24,6 +24,7 @@ Contains functions to construct and build DNN with L1 regularization. This is al
 Performance datasets of 8 subject systems as specified in the paper.
 
 - **Tables**:
+Supplementary tables for the paper.
 
 # State-of-the-art Models
 Below are the repositories of the SOTA performance prediction models, which are evaluated and compared with DaL in the paper:

@@ -513,7 +513,7 @@ if __name__ == "__main__":
                     config['verbose'] = 0
 
                 # train the DeepPerf model
-                deepperf_model = MTLSparseModel(config)
+                deepperf_model = MLPSparseModel(config)
                 deepperf_model.build_train()
                 deepperf_model.train(X_train_deepperf, Y_train_deepperf, lr_opt)
 

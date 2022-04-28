@@ -40,7 +40,7 @@ Supplementary tables for the paper.
 
         python DaL_main.py
         
-- **Python IDE (e.g. Pycharm)**: Open the Encoding.py file on the IDE, and click 'Run'.
+- **Python IDE (e.g. Pycharm)**: Open the DaL_main.py file on the IDE, and click 'Run'.
 
 
 

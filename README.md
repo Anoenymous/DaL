@@ -18,11 +18,11 @@ Contains functions to construct and build DNN with L1 regularization. This is al
 
     └─ **general.py**:
    
-    Contains utility functions to build DNN and other ML models.
+        Contains utility functions to build DNN and other ML models.
     
     └─ **hyperparameter_tuning.py**:
     
-    Contains function that efficiently tunes hyperparameters of DNN.
+        Contains function that efficiently tunes hyperparameters of DNN.
     
 
 - **Data**:
@@ -38,19 +38,19 @@ Below are the repositories of the SOTA performance prediction models, which are 
 
 - [DeepPerf](https://github.com/DeepPerf/DeepPerf)
 
-A deep neural network performance model with L1 regularization and efficient hyperparameter tuning.
+    A deep neural network performance model with L1 regularization and efficient hyperparameter tuning.
 
 - [DECART](https://github.com/jmguo/DECART)
 
-CART with data-efficient sampling method.
+    CART with data-efficient sampling method.
 
 - [SPLConqueror](https://github.com/se-sic/SPLConqueror)
 
-Linear regression with optimal binary and numerical sampling method and stepwise feature seleaction.
+    Linear regression with optimal binary and numerical sampling method and stepwise feature seleaction.
 
 - [Perf-AL](https://github.com/GANPerf/GANPerf)
 
-Novel GAN based performance model with a generator to predict performance and a discriminator to distinguish the actual and predicted labels.
+    Novel GAN based performance model with a generator to predict performance and a discriminator to distinguish the actual and predicted labels.
 
 # Prerequisites and Installation
 

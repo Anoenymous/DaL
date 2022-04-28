@@ -41,23 +41,35 @@ Supplementary tables for the paper.
         
 - **Python IDE (e.g. Pycharm)**: Open the Encoding.py file on the IDE, and click 'Run'.
 
+
+
 ## To switch between subject systems
 Comment and Uncomment the lines 33-40 following the comments in *DaL_main.py*.
 
 E.g., to run DaL with Apache, uncomment line 33 'subject_system = 'Apache_AllNumeric'' and comment the other lines.
 
+
+
 ## To change experiment settings
 Alter the codes between lines 20-30 following the comments in *DaL_main.py*.
 
 E.g.:
-- To save the experiment results, set 'save_file = True' line 21.
-- To change the number of experiments, change 'N_experiments' at line 27, where each element corresponds to N_experiment of a sample size. For example, to simply run the first sample size with 30 repeated runs, set 'N_experiments = [30, 0, 0, 0, 0]'.
+- To save the experiment results, set 'save_file = True' at line 21.
+- To change the number of experiments, change 'N_experiments' at line 27, where each element corresponds a sample size. 
+For example, to simply run the first sample size with 30 repeated runs, set 'N_experiments = [30, 0, 0, 0, 0]'.
 
 
 ## To compare DaL with DeepPerf
 1. Set line 20 with 'test_mode = False'
-2. Set line 21 with 'save_file = True'
-3. 
+
+2. Set line 23 with 'enable_deepperf = True'
+
+
+## To compare DaL with other ML models (RF, DT, LR, SVR, KRR, kNN) and DaL framework with these models (DaL_RF, DaL_DT, DaL_LR, DaL_SVR, DaL_KRR, DaL_kNN)
+1. Set line 20 with 'test_mode = False'
+
+2. Set line 22 with 'enable_baseline_models = True'
+
 
 
 # State-of-the-art Models

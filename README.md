@@ -33,8 +33,8 @@ Supplementary tables for the paper.
 
 3. Run *DaL_main.py* and install all missing packages according to runtime messages.
 
-# Usage
-## Run DaL
+
+# Run DaL
 - **Command line**: cd to the folder with the codes, and run
 
         python DaL_main.py
@@ -43,7 +43,7 @@ Supplementary tables for the paper.
 
 
 
-## Change experiment settings
+# Change experiment settings
 Alter the codes between lines 20-71 following the comments in *DaL_main.py*.
 
 #### To switch between subject systems

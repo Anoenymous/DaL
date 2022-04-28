@@ -61,9 +61,9 @@ To run more complicated experiments, alter the codes between lines 20-71 followi
 
 
 #### To change the number of experiments
-    Change 'N_experiments' at line 27, where each element corresponds a sample size. 
+| Change 'N_experiments' at line 27, where each element corresponds a sample size. 
 
-    For example, to simply run the first sample size with 30 repeated runs, set 'N_experiments = [30, 0, 0, 0, 0]'.
+| For example, to simply run the first sample size with 30 repeated runs, set 'N_experiments = [30, 0, 0, 0, 0]'.
 
 #### To change the sample sizes of a particular system
     Edit lines 55-71.

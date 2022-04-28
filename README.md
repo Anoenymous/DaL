@@ -40,11 +40,11 @@ Supplementary tables for the paper.
 
         python DaL_main.py
         
-- **Python IDE (e.g. Pycharm)**: Open the DaL_main.py file on the IDE, and click 'Run'.
+- **Python IDE (e.g. Pycharm)**: Open the *DaL_main.py* file on the IDE, and click 'Run'.
 
 
 
-# Change experiment settings
+# Change program settings
 Alter the codes between lines 20-71 following the comments in *DaL_main.py*.
 
 #### To switch between subject systems

@@ -1,4 +1,5 @@
-This repository contains the key codes and full data used in the paper **_'Predicting Software Performance with Divide-and-Learn'_**.
+# Predicting Software Performance with Divide-and-Learn
+This repository contains the key codes, full data used, and the suppplementary tables in the paper **_'Predicting Software Performance with Divide-and-Learn'_**.
 
 # Documents
 

@@ -48,9 +48,9 @@ Supplementary tables for the paper.
 Alter the codes between lines 20-71 following the comments in *DaL_main.py*.
 
 #### To switch between subject systems
-    Comment and Uncomment the lines 33-40 following the comments in *DaL_main.py*.
+    Comment and Uncomment the lines 33-40 following the comments in DaL_main.py.
 
-    E.g., to run DaL with Apache, uncomment line 33 'subject_system = 'Apache_AllNumeric'' and comment the other lines.
+    E.g., to run DaL with Apache, uncomment line 33 'subject_system = 'Apache_AllNumeric'' and comment out the other lines.
 
 
 #### To save the experiment results

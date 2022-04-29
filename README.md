@@ -38,7 +38,7 @@ The codes are tested with *Python 3.6 - 3.7* and *Tensorflow 1.x*, other version
 
 # Run DaL
 
-- **Command line**: cd to the folder with the codes, and simply run
+- **Command line**: cd to the folder with the codes, input the command below, and the rest of the processes will be fully automated.
 
         python DaL_main.py
         
@@ -47,7 +47,7 @@ The codes are tested with *Python 3.6 - 3.7* and *Tensorflow 1.x*, other version
 
 
 # Change Experiment Settings
-The main program is fully automated with a default experiment setting, which is an example of evaluating DaL.
+The main program is defaultly an example experiment that evaluates DaL with 5 sample sizes of Lrzip, each repeated 30 times.
 
 To run more complicated experiments, alter the codes following the comments in *DaL_main.py*.
 
@@ -61,7 +61,7 @@ To run more complicated experiments, alter the codes following the comments in *
     Set 'save_file = True' at line 21.
 
 
-#### To change the number of experiments
+#### To change the number of experiments for specified sample size(s)
     Change 'N_experiments' at line 27, where each element corresponds a sample size. 
 
     For example, to simply run the first sample size with 30 repeated runs, set 'N_experiments = [30, 0, 0, 0, 0]'.

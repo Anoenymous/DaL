@@ -28,9 +28,10 @@ performance datasets of 8 subject systems as specified in the paper.
 supplementary tables for the paper.
 
 # Prerequisites and Installation
-1. Download all the files into the same folder.
+1. Download all the files into the same folder/clone the repository.
 
-2. The codes are tested with *Python 3.6 - 3.7* and *Tensorflow 1.x*, other versions might cause errors.
+2. Install specified version of Python and Tensorflow. 
+The codes are tested with *Python 3.6 - 3.7* and *Tensorflow 1.x*, other versions might cause errors.
 
 3. Run *DaL_main.py* and install all missing packages according to runtime messages.
 

@@ -89,7 +89,7 @@ To run more complicated experiments, alter the codes following the comments in *
     
     E.g, run DaL with d=2: set 'depths = [2]'.
 
-    E.g, run DaL with d=3 and d=4: set 'depths = [3, 4]'.
+    E.g, run DaL with d=3 and d=4, respectively: set 'depths = [3, 4]'.
 
 
 # State-of-the-art Performance Prediction Models

@@ -85,9 +85,11 @@ To run more complicated experiments, alter the codes following the comments in *
 
 
 #### To run DaL with different depth d
-    Run DaL with d=2: set line 25 with 'depths = [2]'.
+    Add the dedicated d into the list 'depths' at line 25.
+    
+    E.g, run DaL with d=2: set 'depths = [2]'.
 
-    Run DaL with d=3 and d=4: set line 25 with 'depths = [3, 4]'.
+    E.g, run DaL with d=3 and d=4: set 'depths = [3, 4]'.
 
 
 # State-of-the-art Performance Prediction Models

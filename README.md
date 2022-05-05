@@ -45,10 +45,22 @@ The codes are tested with **Python 3.6 - 3.7** and **Tensorflow 1.x**, other ver
 - **Python IDE (e.g. Pycharm)**: Open the *DaL_main.py* file on the IDE, and simply click 'Run'.
 
 
-# An Example Run of *DaL_main.py* 
-The main program is defaultly an example experiment that evaluates *DaL* with 5 sample sizes of *Lrzip*, each repeated 30 times, without hyperparameter tuning for the models (to save demonstrate time).
+# An Example Experiment of *DaL* 
+The main program *DaL_main.py* is defaultly an example experiment that evaluates *DaL* with 5 sample sizes of *Lrzip*, each repeated 30 times, without hyperparameter tuning for the models (to save demonstrate time).
 
-An succussful run should produce the following messages: 
+A succussful run would produce similar messages as below: 
+
+        N_train:  127
+        N_test:  5057
+        ---DNN_DaL depth 1---
+        Dividing...
+          106 samples with feature 5 <= 0.5:
+          21 samples with feature 5 > 0.5:
+        Training...
+        Testing...
+        Best clustering rate: 4885/5057 = 0.9659877397666601
+        > DNN_DaL MRE: 30.88
+        DNN_DaL total time cost (minutes): 0.91
 
 
 # Change Experiment Settings

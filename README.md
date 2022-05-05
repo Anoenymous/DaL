@@ -31,7 +31,7 @@ supplementary document for Table4 in the paper.
 1. Download all the files into the same folder/clone the repository.
 
 2. Install specified version of Python and Tensorflow. 
-The codes are tested with *Python 3.6 - 3.7* and *Tensorflow 1.x*, other versions might cause errors.
+The codes are tested with **Python 3.6 - 3.7** and **Tensorflow 1.x**, other versions might cause errors.
 
 3. Run *DaL_main.py* and install all missing packages according to runtime messages.
 

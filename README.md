@@ -24,8 +24,8 @@ contains functions to construct and build DNN with L1 regularization. This is al
 - **Data**:
 performance datasets of 8 subject systems as specified in the paper.
 
-- **Tables**:
-supplementary tables for the paper.
+- **Table4_full.pdf**:
+supplementary document for Table4 in the paper.
 
 # Prerequisites and Installation
 1. Download all the files into the same folder/clone the repository.

@@ -51,9 +51,9 @@ the codes have been tested with **Python 3.6 - 3.7** and **Tensorflow 1.x**, oth
 - **Python IDE (e.g. Pycharm)**: Open the *DaL_main.py* file on the IDE, and simply click 'Run'.
 
 
-# Example Experiment
-The main program *DaL_main.py* is defaultly an example experiment that evaluates *DaL* with 5 sample sizes of *Lrzip*, 
-each repeated 30 times, without hyperparameter tuning (to save demonstration time).
+# Demo Experiment
+The main program *DaL_main.py* is defaultly an demo experiment that evaluates *DaL* with 5 sample sizes of *Lrzip*, 
+each repeated 30 times, without hyperparameter tuning (to save time).
 
 A succussful run would produce similar messages as below: 
 

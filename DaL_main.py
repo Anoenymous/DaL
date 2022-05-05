@@ -370,7 +370,7 @@ if __name__ == "__main__":
                         if temp == testing_clusters[i]:
                             count += 1
                 rel_errors = np.mean(rel_errors) # average the REs to get the MRE
-                print('Best clustering rate: {}/{} = {}'.format(count, len(testing_clusters),
+                print('Best shot rate: {}/{} = {}'.format(count, len(testing_clusters),
                                                                 count / len(testing_clusters)))
                 print('> DNN_DaL MRE: {}'.format(round(rel_errors, 2)))
 
@@ -438,7 +438,7 @@ if __name__ == "__main__":
                         rel_errors = np.mean(rel_errors) # average the REs to get the MRE
                         print('> {}_DaL MRE: {}'.format(regression_mod, round(rel_errors, 2)))
 
-                        print('Best clustering rate: {}/{} = {}'.format(count, len(testing_clusters),
+                        print('Best shot rate: {}/{} = {}'.format(count, len(testing_clusters),
                                                                         count / len(testing_clusters)))
 
                         # End measuring time

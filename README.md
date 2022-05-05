@@ -46,10 +46,10 @@ The codes are tested with **Python 3.6 - 3.7** and **Tensorflow 1.x**, other ver
 
 
 # Example Experiment
-The main program *DaL_main.py* is defaultly an example experiment that evaluates *DaL* with 5 training sample sizes of *Lrzip*, 
+The main program *DaL_main.py* is defaultly an example experiment that evaluates *DaL* with 5 sample sizes of *Lrzip*, 
 each repeated 30 times, without hyperparameter tuning (to save demonstration time).
 
-A **succussful run** would produce similar messages as below: 
+A succussful run would produce similar messages as below: 
 
         N_train:  127
         N_test:  5057

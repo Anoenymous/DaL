@@ -46,7 +46,7 @@ The codes are tested with **Python 3.6 - 3.7** and **Tensorflow 1.x**, other ver
 
 
 # An Example Experiment of *DaL* 
-The main program *DaL_main.py* is defaultly an example experiment that evaluates *DaL* with 5 sample sizes of *Lrzip*, each repeated 30 times, without hyperparameter tuning for the models (to save demonstrate time).
+The main program *DaL_main.py* is defaultly an example experiment that evaluates *DaL* with 5 sample sizes of *Lrzip*, each repeated 5 times, without hyperparameter tuning (to save demonstration time).
 
 A succussful run would produce similar messages as below: 
 

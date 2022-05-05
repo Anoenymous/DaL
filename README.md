@@ -57,6 +57,7 @@ each repeated 30 times, without hyperparameter tuning (to save demonstration tim
 
 A succussful run would produce similar messages as below: 
 
+        Run 1
         N_train:  127
         N_test:  5057
         ---DNN_DaL depth 1---
@@ -65,7 +66,7 @@ A succussful run would produce similar messages as below:
           21 samples with feature 5 > 0.5:
         Training...
         Testing...
-        Best clustering rate: 4885/5057 = 0.9659877397666601
+        Best shot rate: 4885/5057 = 0.9659877397666601
         > DNN_DaL MRE: 30.88
         DNN_DaL total time cost (minutes): 0.91
 

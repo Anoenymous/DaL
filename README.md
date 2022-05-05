@@ -5,7 +5,7 @@ In this paper, we propose an approach based on the concept of 'divide-and-learn'
 
 Experiment results from eight real-world systems and five sets of training data reveal that, compared with the state-of-the-art approaches, *DaL* performs no worse than the best counterpart on 33 out of 40 cases (within which 26 cases are significantly better) with up to 1.94× improvement on accuracy; requires fewer samples to reach the same/better accuracy; and producing acceptable training overhead. Practically, *DaL* also considerably improves different global models when using them as the underlying local models, which further strengthens its flexibility. 
 
-This repository contains the **key codes, full data used, and the suppplementary tables** for the paper.
+This repository contains the **key codes**, **full data used**, and **the suppplementary tables** for the paper.
 
 # Documents
 

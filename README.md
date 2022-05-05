@@ -62,6 +62,7 @@ A succussful run would produce similar messages as below:
         > DNN_DaL MRE: 30.88
         DNN_DaL total time cost (minutes): 0.91
 
+The results will be saved in a file at the same directory with name in the format *'System_Nsamples_Nexperiments_Date'*, for example *'Lrzip_127_01-30_05-05'*.
 
 # Change Experiment Settings
 To run more complicated experiments, alter the codes following the the instructions below and comments in *DaL_main.py*.

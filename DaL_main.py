@@ -1,29 +1,29 @@
+import time
+import random
 import numpy as np
 import pandas as pd
-import random
-from numpy import genfromtxt
-import time
-from sklearn import tree
-from sklearn.feature_selection import mutual_info_regression
-from mlp_sparse_model import MLPSparseModel
 import tensorflow as tf
-from sklearn.cluster import KMeans
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV
+from numpy import genfromtxt
 from imblearn.over_sampling import SMOTE
+from mlp_sparse_model import MLPSparseModel
 from utils.general import build_model
 from utils.hyperparameter_tuning import nn_l1_val, hyperparameter_tuning
+from sklearn import tree
+from sklearn.cluster import KMeans
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import mutual_info_regression
 
 
 if __name__ == "__main__":
     # set the parameters
     test_mode = True ### to tune the hyper-pearameters, set to False
-    save_file = False ### to save the results, set to True
+    save_file = True ### to save the results, set to True
     enable_baseline_models = False ### to compare DaL with other ML models (RQ2), set to True
     enable_deepperf = False ### to compare DaL with Deepperf (RQ1), set to True
     seed = 3 # the base random seed, for replicating the results
-    depths = [1]  ### to run experiments comparing different depths, add depths here, starting from 1
-    total_experiments = 30 # the number of repeated runs
+    depths = [1]  ### to run experiments comparing different depths (RQ3), add depths here, starting from 1
+    total_experiments = 30 ### the total number of repeated runs, for controlling the start point of runs
     N_experiments = [30, 30, 30, 30, 30] ### to control the number of experiment, each element corresponds to a sample size
     min_samples = 2  # minimum samples required in each division
     total_tasks = 1  # number of performance metrics in the csv file, starting from 1
@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
 
         # specify the file name to save
-        saving_file_name = '{}ne_{}_{}-{}_{}_{}.txt'.format(seed, N_train, total_experiments-N_experiments[i_train], total_experiments, dir_data.split('/')[1].split('.')[0],
+        saving_file_name = '{}_{}_{}-{}_{}.txt'.format(dir_data.split('/')[1].split('.')[0], N_train, total_experiments-N_experiments[i_train], total_experiments,
                                                              time.strftime('%m-%d_%H-%M-%S', time.localtime(time.time())))
         # save the results when needed
         if save_file and N_experiments[i_train] != 0:
@@ -128,7 +128,7 @@ if __name__ == "__main__":
             weights = []
             feature_weights = mutual_info_regression(whole_data[non_zero_indexes, 0:N_features],
                                                      whole_data[non_zero_indexes, n - task_index], random_state=0)
-            print('Computing weights of {} samples'.format(len(non_zero_indexes)))
+            # print('Computing weights of {} samples'.format(len(non_zero_indexes)))
             for i in range(N_features):
                 weight = feature_weights[i]
                 # print('Feature {} weight: {}'.format(i, weight))

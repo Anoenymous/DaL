@@ -83,6 +83,10 @@ To run more complicated experiments, alter the codes following the the instructi
 
 #### To save the experiment results
     Set 'save_file = True' at line 21.
+    
+    
+#### To tune the hyperparameters (takes longer time)
+    Set line 20 with 'test_mode = False'.
 
 
 #### To change the number of experiments for specified sample size(s)

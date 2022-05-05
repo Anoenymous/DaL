@@ -1,5 +1,12 @@
 # Predicting Software Performance with Divide-and-Learn
-This repository contains the key codes, full data used, and the suppplementary tables in the paper **_'Predicting Software Performance with Divide-and-Learn'_**.
+
+Predicting the performance of highly configurable software systems is the foundation for performance testing and quality assurance. To that end, recent work has been relying on machine/deep learning to model software performance. However, a crucial challenge is how to handle the sparsity inherited from the configuration landscape: the influence of configuration options (features) and the distribution of data samples are highly sparse. 
+
+In this paper, we propose an approach based on the concept of 'divide-and-learn', dubbed *DaL*. The basic idea is that, to handle sample sparsity, we divide the samples from the configuration landscape into distant divisions, for each of which we build a dedicated local Deep Neural Network with regularization (for dealing with feature sparsity). As such, a newly given configuration would be assigned to the right model of division for the final prediction. 
+
+Experiment results from eight real-world systems and five sets of training data reveal that, compared with the best state-of-the-art approaches, *DaL* performs no worse than the best counterpart on 33 out of 40 cases (within which 26 cases are significantly better) with up to $1.94\times$ improvement on accuracy; requires fewer samples to reach the same/better accuracy and producing acceptable training overhead. Practically, it can also considerably improve different global models when using them as the underlying local models, which further strengthens the flexibility of  *DaL*. 
+
+This repository contains the key codes, full data used, and the suppplementary tables for the paper.
 
 # Documents
 

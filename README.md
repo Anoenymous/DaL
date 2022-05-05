@@ -36,7 +36,7 @@ The codes are tested with **Python 3.6 - 3.7** and **Tensorflow 1.x**, other ver
 3. Run *DaL_main.py* and install all missing packages according to runtime messages.
 
 
-# Run DaL
+# Run *DaL*
 
 - **Command line**: cd to the folder with the codes, input the command below, and the rest of the processes will be fully automated.
 
@@ -45,11 +45,14 @@ The codes are tested with **Python 3.6 - 3.7** and **Tensorflow 1.x**, other ver
 - **Python IDE (e.g. Pycharm)**: Open the *DaL_main.py* file on the IDE, and simply click 'Run'.
 
 
+# An Example Run of *DaL_main.py* 
+The main program is defaultly an example experiment that evaluates *DaL* with 5 sample sizes of *Lrzip*, each repeated 30 times, without hyperparameter tuning for the models (to save demonstrate time).
+
+An succussful run should produce the following messages: 
+
 
 # Change Experiment Settings
-The main program is defaultly an example experiment that evaluates DaL with 5 sample sizes of Lrzip, each repeated 30 times.
-
-To run more complicated experiments, alter the codes following the comments in *DaL_main.py*.
+To run more complicated experiments, alter the codes following the the instructions below and comments in *DaL_main.py*.
 
 #### To switch between subject systems
     Comment and Uncomment the lines 33-40 following the comments in DaL_main.py.

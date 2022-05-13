@@ -53,9 +53,9 @@ the codes have been tested with **Python 3.6 - 3.7** and **Tensorflow 1.x**, oth
 
 # Demo Experiment
 The main program *DaL_main.py* defaultly runs a demo experiment that evaluates *DaL* with 5 sample sizes of *Lrzip*, 
-each repeated 30 times, without hyperparameter tuning (to save time).
+each repeated 30 times, without hyperparameter tuning (to save demonstration time).
 
-A succussful run would produce similar messages as below: 
+A **succussful run** would produce similar messages as below: 
 
         Run 1
         N_train:  127
